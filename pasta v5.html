@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taglia Pasta Shop</title>
+  <style>
+    /* Reset some default styles */
+    body, ul, li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    /* Basic styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffebcd; /* Almond */
+      margin: 0;
+      padding: 0;
+      color: #444;
+    }
+
+    header {
+      background-color: #333;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav {
+      padding: 10px 0;
+    }
+
+    nav ul {
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-weight: bold; /* Bold font for tabs */
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 200px auto 100px; /* Adjusted margin */
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: normal;
+      color: #333;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    footer {
+      background-color: #333;
+      color: white; /* Updated font color */
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+      font-size: 14px;
+      position: fixed;
+      bottom: 0;
+    }
+
+    .taglia {
+      font-size: 72px; /* Larger font size */
+      margin: 20px auto 0; /* Adjusted margin */
+      color: #d35400;
+      font-family: 'Arial Black', sans-serif;
+      text-transform: uppercase; /* All caps */
+      text-align: center; /* Center align */
+      width: 100%; /* Full width */
+    }
+
+    #home {
+      text-align: center;
+    }
+
+    #home img {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 100%;
+    }
+
+    /* Contact form styles */
+    .contact-form {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .contact-form input[type="text"], 
+    .contact-form input[type="email"], 
+    .contact-form input[type="tel"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px; /* Match font size with other text boxes */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Match font style */
+    }
+
+    .contact-form input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .required {
+      color: red;
+    }
+
+    /* Shop page styles */
+    .shop-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center align */
+    }
+
+    .item {
+      width: 300px; /* Set fixed width */
+      margin: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .item img {
+      width: 80%;
+      max-width: 200px;
+      border-radius: 10px;
+      margin: 0 auto 10px; /* Center align */
+    }
+
+    .item h3 {
+      margin-bottom: 10px;
+    }
+
+    .item p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .item button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .item button:hover {
+      background-color: #45a049;
+    }
+
+    /* Item cart styles */
+    .cart-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center align */
+    }
+
+    .cart-item {
+      width: 300px; /* Set fixed width */
+      margin: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cart-item img {
+      width: 80%;
+      max-width: 200px;
+      border-radius: 10px;
+      margin: 0 auto 10px; /* Center align */
+    }
+
+    .cart-item h4 {
+      margin-bottom: 10px;
+    }
+
+    .cart-item p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .cart-item button {
+      background-color: #ff4500;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cart-item button:hover {
+      background-color: #d14800;
+    }
+
+    .no-items-message {
+      text-align: center;
+    }
+
+    .checkout-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .checkout-button button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 16px; /* Match font size with other buttons */
+    }
+
+    .checkout-button button:hover {
+      background-color: #45a049;
+    }
+
+    .checkout-button button:active {
+      transform: translateY(2px); /* Add slight vertical movement when clicked */
+      box-shadow: 0 1px #666; /* Add shadow to simulate button press */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="taglia">TAGLIA</div>
+    <nav>
+      <ul>
+        <li><a href="#home" onclick="openTab('home')">Home</a></li>
+        <li><a href="#about" onclick="openTab('about')">About Us</a></li>
+        <li><a href="#shop" onclick="openTab('shop')">Shop</a></li>
+        <li><a href="#contact" onclick="openTab('contact')">Contact</a></li>
+        <li><a href="#item-cart" onclick="openTab('item-cart')">Item Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div id="home">
+      <h1>Welcome to Taglia Pasta Shop</h1>
+      <img src="pasta.jpg" alt="Pasta">
+      <p>Here you will find a variety of delicious pastas!</p>
+    </div>
+
+    <div id="about" style="display: none;">
+      <h2>About Us</h2>
+      <p>Our vision is to provide high-quality pasta options to our customers.</p>
+      <p>Our mission is to make pasta accessible and enjoyable for everyone.</p>
+      <p>We started our business in [Year] with a passion for pasta and a desire to share it with the world.</p>
+      <p>Our team is composed of pasta enthusiasts who are dedicated to bringing the best pasta experience to our customers.</p>
+      <p>We source our ingredients from local farmers and artisans to ensure freshness and support our community.</p>
+      <p>At Taglia, we believe in creating a welcoming environment where pasta lovers can come together to enjoy delicious meals and share their love for pasta.</p>
+    </div>
+
+    <div id="shop" style="display: none;">
+      <h2>Shop</h2>
+      <div class="shop-items">
+        <div class="item">
+          <img src="spaghetti.jpg" alt="Spaghetti">
+          <h3>Spaghetti</h3>
+          <p>Classic pasta shape</p>
+          <button onclick="addToCart('Spaghetti')">Add to Cart</button>
+        </div>
+        <!-- Add more items here -->
+        <!-- Example items added -->
+        <div class="item">
+          <img src="penne.jpg" alt="Penne">
+          <h3>Penne</h3>
+          <p>Short pasta tubes</p>
+          <button onclick="addToCart('Penne')">Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="lasagne.jpg" alt="Lasagne">
+          <h3>Lasagne</h3>
+          <p>Wide pasta sheets</p>
+          <button onclick="addToCart('Lasagne')">Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="ravioli.jpg" alt="Ravioli">
+          <h3>Ravioli</h3>
+          <p>Stuffed pasta</p>
+          <button onclick="addToCart('Ravioli')">Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="linguine.jpg" alt="Linguine">
+          <h3>Linguine</h3>
+          <p>Flat pasta strands</p>
+          <button onclick="addToCart('Linguine')">Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="rigatoni.jpg" alt="Rigatoni">
+          <h3>Rigatoni</h3>
+          <p>Short, wide tubes</p>
+          <button onclick="addToCart('Rigatoni')">Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="farfalle.jpg" alt="Farfalle">
+          <h3>Farfalle</h3>
+          <p>Bow tie or butterfly pasta</p>
+          <button onclick="addToCart('Farfalle')">Add to Cart</button>
+        </div>
+        <div class="item">
+          <img src="macaroni.jpg" alt="Macaroni">
+          <h3>Macaroni</h3>
+          <p>Small curved tubes</p>
+          <button onclick="addToCart('Macaroni')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" style="display: none;">
+      <h2>Contact</h2>
+      <div class="contact-form">
+        <form id="feedback-form">
+          <input type="text" id="name" name="name" placeholder="Name *" maxlength="50" required><br>
+          <input type="email" id="email" name="email" placeholder="Email Address *" maxlength="50" required><br>
+          <input type="tel" id="phone" name="phone" placeholder="Contact Number *" pattern="[0-9]{1,12}" maxlength="12" required><br>
+          <textarea id="feedback" name="feedback" rows="4" placeholder="Feedback *" maxlength="300" required></textarea><br>
+          <input type="submit" value="Submit">
+        </form>
+        <p id="feedback-message" style="display: none;"></p>
+      </div>
+    </div>
+    
+    <div id="item-cart" style="display: none;">
+      <h2>Item Cart</h2>
+      <div class="cart-items">
+        <p class="no-items-message">No items in cart, come back again when you have selected some finest products.</p>
+      </div>
+      <div class="checkout-button" style="display: none;">
+        <button onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>123 Pasta Avenue, Pasta City | Phone: 123-456-7890 | Email: info@pastashop.com</p>
+  </footer>
+
+  <script>
+    // Function to switch tabs
+    function openTab(tabName) {
+      var i;
+      var x = document.getElementsByClassName("container")[0].children;
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      document.getElementById(tabName).style.display = "block";
+    }
+
+    // Simulate checkout
+    function checkout() {
+      alert("Redirecting to checkout page...");
+      // Add logic to redirect to checkout page
+    }
+
+    // Function to add item to cart
+    function addToCart(itemName) {
+      var cartItems = document.querySelector("#item-cart .cart-items");
+      var cartItem = document.createElement("div");
+      cartItem.classList.add("cart-item");
+
+      var itemImage = document.createElement("img");
+      itemImage.src = `${itemName.toLowerCase().replace(/\s/g, '-')}.jpg`;
+      itemImage.alt = itemName;
+
+      var itemNameHeading = document.createElement("h4");
+      itemNameHeading.textContent = itemName;
+
+      var removeButton = document.createElement("button");
+      removeButton.textContent = "Remove";
+      removeButton.onclick = function() {
+        cartItem.remove();
+        updateCartMessage();
+      };
+
+      cartItem.appendChild(itemImage);
+      cartItem.appendChild(itemNameHeading);
+      cartItem.appendChild(removeButton);
+
+      cartItems.appendChild(cartItem);
+      updateCartMessage();
+    }
+
+    // Function to update cart message
+    function updateCartMessage() {
+      var checkoutButton = document.querySelector("#item-cart .checkout-button");
+      var cartItems = document.querySelector("#item-cart .cart-items");
+
+      if (cartItems.children.length === 0) {
+        checkoutButton.style.display = "none";
+      } else {
+        checkoutButton.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
